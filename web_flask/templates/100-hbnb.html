@@ -5,6 +5,7 @@
     <link href="../static/styles/3-header.css" rel="stylesheet">
     <link href="../static/styles/3-footer.css" rel="stylesheet">
     <link href="../static/styles/6-filters.css" rel="stylesheet">
+    <link href="../static/styles/8-places.css" rel="stylesheet">
     <link rel="shortcut icon" href="../static/images/icon.png" type="image/x-icon"/>
     <meta charset="utf-8">
     <title>AirBnB clone</title>
@@ -41,6 +42,37 @@
           </ul>
         </div>
         <button>Search</button>
+      </section>
+      <section class="places">
+        <h1>Places</h1>
+        <div class="places-container">
+					{% for place in places.values()|sort(attribute='name') %}
+          <article>
+            <div class="title">
+              <h2>{{ place.name }}</h2>
+              <div class="price_by_night">${{ place.price_by_night }}</div>
+            </div>
+            <div class="information">
+              <div class="max_guest">
+                <div class="logo"></div>
+                <span>{{ place.max_guest }} Guests</span>
+              </div>
+              <div class="number_rooms">
+                <div class="logo"></div>
+                <span>{{ place.number_rooms }} Bedroom</span>
+              </div>
+              <div class="number_bathrooms">
+                <div class="logo"></div>
+                <span>{{ place.number_bathrooms }} Bathroom</span>
+              </div>
+            </div>
+            <div class="user"><b>Owner</b>: {{ place.user.first_name }} {{ place.user.last_name}}</div>
+            <div class="description">
+						{{ place.description|safe }}
+            </div>
+          </article>
+					{% endfor %}
+        </div>
       </section>
     </div>
     <footer>
